@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.karuriSuro.newsStation.modal;
+package com.karuriSuro.newsStation.model;
 
 import java.time.LocalDateTime;
 
@@ -12,10 +12,9 @@ import java.time.LocalDateTime;
 public record NewsPreview(
 		String headline, 
 		String subHeading, 
-		String desc, 
 		String img, 
 		LocalDateTime publishedOn,
 		String url, 
 		boolean isMainStory, 
 		String author
-		) {}
+	) {}
