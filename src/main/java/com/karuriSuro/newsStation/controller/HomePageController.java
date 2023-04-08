@@ -53,7 +53,6 @@ public class HomePageController {
 				news.getSubHeading(), 
 				news.getImg(), 
 				news.getPublishedOn(), 
-				news.getUrl(), 
 				news.getIsMainStory(), 
 				news.getAuthor());
 		

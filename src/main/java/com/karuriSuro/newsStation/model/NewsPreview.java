@@ -14,7 +14,6 @@ public record NewsPreview(
 		String subHeading, 
 		String img, 
 		LocalDateTime publishedOn,
-		String url, 
 		boolean isMainStory, 
 		String author
 	) {}

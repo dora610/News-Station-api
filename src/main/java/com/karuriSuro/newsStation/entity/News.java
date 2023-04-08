@@ -5,6 +5,8 @@ package com.karuriSuro.newsStation.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,7 +38,6 @@ public class News {
 	private String subHeading;
 	private String img;
 	private LocalDateTime publishedOn;
-	private String url;
 	private Boolean isMainStory;
 	// TODO: reference author entity
 	private String author;
@@ -46,13 +47,12 @@ public class News {
 	
 	
 	
-	public News(String headline, String subHeading, String img, LocalDateTime publishedOn, String url,
+	public News(String headline, String subHeading, String img, LocalDateTime publishedOn,
 			Boolean isMainStory, String author, String category) {
 		this.headline = headline;
 		this.subHeading = subHeading;
 		this.img = img;
 		this.publishedOn = publishedOn;
-		this.url = url;
 		this.isMainStory = isMainStory;
 		this.author = author;
 		this.category = category;
