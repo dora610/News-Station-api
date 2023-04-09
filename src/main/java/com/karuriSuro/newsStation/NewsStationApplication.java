@@ -1,11 +1,5 @@
 package com.karuriSuro.newsStation;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karuriSuro.newsStation.dao.NewsRepository;
-import com.karuriSuro.newsStation.demo.NewsData;
-import com.karuriSuro.newsStation.entity.News;
-import com.karuriSuro.newsStation.model.NewsPreview;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,26 +29,25 @@ public class NewsStationApplication {
 	public CommandLineRunner runner() {
 		return (args) -> {
 
-			ObjectMapper mapper = new ObjectMapper();
-			TypeReference<List<NewsData>> typeReference = new TypeReference<List<NewsData>>() {};
-			InputStream inputStream = TypeReference.class.getResourceAsStream("/data/newspreview.json");
-			
-			try {
-				List<NewsData> dataList = mapper.readValue(inputStream, typeReference);
-				logger.info("data loaded from json file");
-				
-				dataList.stream().map(d -> {
-					News newsDemo = new News(d.headline(), d.subHeading(), d.img(),
-							d.publishedOn().toInstant().atZone(ZoneId.of("Asia/Kolkata")).toLocalDateTime(),
-							d.isMainStory(), d.author(), d.category());
-					newsRepository.save(newsDemo);
-					return d.toString();
-				}).forEach(NewsStationApplication.logger::info);
-				
-			} catch (IOException e) {
-				logger.error("Unable to read file");
-				e.printStackTrace();
-			}
+			/*
+			 * ObjectMapper mapper = new ObjectMapper(); TypeReference<List<NewsData>>
+			 * typeReference = new TypeReference<List<NewsData>>() {}; InputStream
+			 * inputStream =
+			 * TypeReference.class.getResourceAsStream("/data/newspreview.json");
+			 * 
+			 * try { List<NewsData> dataList = mapper.readValue(inputStream, typeReference);
+			 * logger.info("data loaded from json file");
+			 * 
+			 * dataList.stream().map(d -> { News newsDemo = new News(d.headline(),
+			 * d.subHeading(), d.img(),
+			 * d.publishedOn().toInstant().atZone(ZoneId.of("Asia/Kolkata")).toLocalDateTime
+			 * (), d.isMainStory(), d.author(), d.category());
+			 * newsRepository.save(newsDemo); return d.toString();
+			 * }).forEach(NewsStationApplication.logger::info);
+			 * 
+			 * } catch (IOException e) { logger.error("Unable to read file");
+			 * e.printStackTrace(); }
+			 */
 
 			logger.info("Data fetched from db");
 			newsRepository.findAll().stream().map(Object::toString).forEach(NewsStationApplication.logger::info);

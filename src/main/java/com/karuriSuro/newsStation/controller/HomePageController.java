@@ -3,13 +3,13 @@
  */
 package com.karuriSuro.newsStation.controller;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +36,7 @@ public class HomePageController {
 	@Autowired
 	NewsRepository newsRepository;
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/hlstories")
 	public List<NewsPreview> getHeadLineNews(@RequestParam(name = "count", defaultValue = "9") Integer count) {
 //		NewsPreview newsPreview = new NewsPreview("The ridiculous but important Twitter check mark fiasco keeps getting worse", "Twitter is finally taking away those free blue \"legacy\" checks to give its paid Twitter Blue service a boost.", null, null, null, false, "Sara Morrison");
